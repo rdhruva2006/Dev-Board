@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DevBoard // HUD
 
-## Getting Started
+![Dashboard Preview](https://via.placeholder.com/1200x600?text=DevBoard+HUD+Dashboard+Preview)
 
-First, run the development server:
+A highly polished, premium SaaS developer dashboard designed to track coding metrics, manage projects, and analyze learning progress in one unified workspace.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+*   **Unified Developer Metrics:** Seamlessly track your GitHub activity, LeetCode solves, and Codeforces ratings all in one place.
+*   **Project Tracker & Session Timer:** Log your active coding hours against specific projects. Start a session timer to track deep work directly to your shipped codebases.
+*   **AI Diagnostics:** Generate summarized performance diagnostics and synthesize your weekly coding metrics using AI.
+*   **Premium SaaS UI:** A sleek, fully responsive light-theme aesthetic built with Tailwind CSS, featuring micro-animations powered by Framer Motion.
+*   **Secure Authentication:** GitHub OAuth integration with Supabase for secure, seamless login.
+*   **GDPR Compliant Data Management:** Full control over your data with built-in "Danger Zone" account reset and data purging functionalities.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+*   **Framework:** [Next.js 14](https://nextjs.org/) (App Router, Server Actions)
+*   **Language:** [TypeScript](https://www.typescriptlang.org/)
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+*   **Animations:** [Framer Motion](https://www.framer.com/motion/)
+*   **Database & Auth:** [Supabase](https://supabase.com/) (PostgreSQL, Row Level Security)
+*   **Icons:** [Lucide React](https://lucide.dev/)
 
-## Learn More
+## ⚙️ Getting Started
 
-To learn more about Next.js, take a look at the following resources:
+### Prerequisites
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+*   Node.js 18+
+*   A Supabase project (for database and authentication)
+*   GitHub OAuth App credentials
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Installation
 
-## Deploy on Vercel
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/rdhruva2006/Dev-Board.git
+    cd Dev-Board
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3.  **Set up environment variables**
+    Create a `.env.local` file in the root directory and add your Supabase credentials:
+    ```env
+    NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+    NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+    ```
+
+4.  **Run the development server**
+    ```bash
+    npm run dev
+    ```
+
+5.  **Open the application**
+    Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/rdhruva2006/Dev-Board/issues).
+
+## 📄 License
+
+This project is licensed under the MIT License.
