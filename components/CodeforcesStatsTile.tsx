@@ -49,7 +49,7 @@ function RatingSparkline({ history }: { history?: { rating: number }[] }) {
       <polyline
         points={points}
         fill="none"
-        stroke="rgb(168,85,247)"
+        stroke="rgb(37,99,235)"
         strokeWidth="1.5"
         strokeLinejoin="round"
         strokeLinecap="round"
@@ -106,23 +106,25 @@ export default function CodeforcesStatsTile({
     return (
       <motion.div
         variants={item}
-        className="relative overflow-hidden rounded-2xl bg-gray-900/80 border border-gray-800 p-5"
+        className="relative overflow-hidden glass-panel p-5 hover:border-blue-300 hover:shadow-md transition-all duration-300 h-full"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 to-transparent rounded-2xl" />
-        <div className="relative z-10">
-          <div className="flex items-center gap-2 mb-3">
-            <Code2 className="w-5 h-5 text-blue-400" />
-            <h3 className="font-medium text-gray-200">Codeforces</h3>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent pointer-events-none" />
+        <div className="relative z-10 space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="text-blue-700 font-bold text-xs bg-blue-50 border border-blue-200 px-2 py-0.5 rounded font-mono">CF</span>
+              <h3 className="font-bold text-slate-700 text-xs font-mono uppercase tracking-wider">Codeforces</h3>
+            </div>
           </div>
-          <p className="text-sm text-gray-400 mb-2">
+          <p className="text-xs text-slate-600 font-sans leading-relaxed">
             {readOnly ? 'No Codeforces profile connected.' : 'Add your Codeforces handle in Settings to see your rating and problems solved.'}
           </p>
           {!readOnly && (
             <a
               href="/settings"
-              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors mt-2"
+              className="inline-flex items-center gap-2 bg-blue-50 hover:bg-blue-100 border border-blue-200 text-blue-700 text-xs font-bold font-mono tracking-wide uppercase px-4 py-2 rounded-xl transition-all"
             >
-              Connect in Settings
+              Connect Profile
             </a>
           )}
         </div>
@@ -134,81 +136,83 @@ export default function CodeforcesStatsTile({
   return (
     <motion.div
       variants={item}
-      className="relative overflow-hidden rounded-2xl bg-gray-900/80 border border-gray-800 p-5"
+      className="relative overflow-hidden glass-panel p-5 hover:border-blue-300 hover:shadow-md transition-all duration-300 h-full"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-transparent to-purple-900/10 rounded-2xl" />
-      <div className="relative z-10">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            {stats?.cf_avatar && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={stats.cf_avatar}
-                alt={profile.codeforces_handle ?? ''}
-                className="w-8 h-8 rounded-full border border-gray-700"
-              />
-            )}
-            <div>
-              <p className="text-sm font-medium text-white">{profile.codeforces_handle}</p>
-              {stats?.cf_rank && (
-                <p className={`text-xs capitalize ${getRankColor(stats.cf_rank)}`}>
-                  {stats.cf_rank}
-                </p>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-blue-100/50 pointer-events-none" />
+      <div className="relative z-10 flex flex-col justify-between h-full">
+        <div>
+          {/* Header */}
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              {stats?.cf_avatar && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={stats.cf_avatar}
+                  alt={profile.codeforces_handle ?? ''}
+                  className="w-7 h-7 rounded-full border border-slate-200 object-cover"
+                />
               )}
+              <div>
+                <p className="text-xs font-bold text-slate-800 font-mono">{profile.codeforces_handle}</p>
+                {stats?.cf_rank && (
+                  <p className={`text-[10px] uppercase font-bold font-mono ${getRankColor(stats.cf_rank)}`}>
+                    {stats.cf_rank}
+                  </p>
+                )}
+              </div>
             </div>
+            <span className="text-blue-700 font-bold text-xs bg-blue-50 border border-blue-200 px-2 py-0.5 rounded font-mono">CF</span>
           </div>
-          <Code2 className="w-4 h-4 text-blue-400" />
+
+          {/* Stats */}
+          {hasStats ? (
+            <>
+              <div className="flex items-end gap-3 mb-3">
+                <div>
+                  <p className="text-2xl font-bold text-slate-900 font-mono">{stats.cf_rating}</p>
+                  <p className="text-[10px] text-slate-500 uppercase font-mono">Current rating</p>
+                </div>
+                <div className="mb-1">
+                  <RatingSparkline history={ratingHistory} />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 mb-4">
+                <div className="bg-slate-50 border border-slate-200 rounded-xl p-2 text-center font-mono">
+                  <p className="text-sm font-bold text-slate-800">{stats.cf_problems_solved}</p>
+                  <p className="text-[9px] text-slate-500 uppercase">SOLVED</p>
+                </div>
+                <div className="bg-slate-50 border border-slate-200 rounded-xl p-2 text-center font-mono">
+                  <p className="text-sm font-bold text-slate-800">{stats.cf_contest_count}</p>
+                  <p className="text-[9px] text-slate-500 uppercase">CONTESTS</p>
+                </div>
+              </div>
+
+              <div className="text-[10px] text-slate-500 mb-3 font-mono">
+                PEAK: <span className={`${getRankColor(stats.cf_max_rank ?? '')} font-bold`}>{stats.cf_max_rank?.toUpperCase()}</span>{' '}
+                ({stats.cf_max_rating})
+              </div>
+            </>
+          ) : (
+            <p className="text-xs text-slate-500 mb-4 font-sans">Click sync to load statistics</p>
+          )}
         </div>
 
-        {/* Stats */}
-        {hasStats ? (
-          <>
-            <div className="flex items-end gap-3 mb-3">
-              <div>
-                <p className="text-2xl font-bold text-white">{stats.cf_rating}</p>
-                <p className="text-xs text-gray-500">Current rating</p>
-              </div>
-              <div className="mb-1">
-                <RatingSparkline history={ratingHistory} />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 mb-4">
-              <div className="bg-gray-800/50 rounded-lg p-2 text-center">
-                <p className="text-base font-semibold text-white">{stats.cf_problems_solved}</p>
-                <p className="text-xs text-gray-500">Solved</p>
-              </div>
-              <div className="bg-gray-800/50 rounded-lg p-2 text-center">
-                <p className="text-base font-semibold text-white">{stats.cf_contest_count}</p>
-                <p className="text-xs text-gray-500">Contests</p>
-              </div>
-            </div>
-
-            <div className="text-xs text-gray-500 mb-3">
-              Peak: <span className={getRankColor(stats.cf_max_rank ?? '')}>{stats.cf_max_rank}</span>{' '}
-              ({stats.cf_max_rating})
-            </div>
-          </>
-        ) : (
-          <p className="text-sm text-gray-500 mb-4">Click sync to load stats</p>
-        )}
-
         {!readOnly && (
-          <>
+          <div className="pt-2 border-t border-slate-200">
             <button
               onClick={handleSync}
               disabled={syncing}
-              className="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-700 disabled:opacity-50 text-white text-sm px-3 py-1.5 rounded-lg transition-colors"
+              className="inline-flex items-center gap-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 hover:border-slate-300 disabled:opacity-50 text-slate-700 text-xs px-3.5 py-1.5 rounded-xl transition-all font-mono uppercase tracking-wider"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${syncing ? 'animate-spin' : ''}`} />
               {syncing ? 'Syncing…' : 'Sync'}
             </button>
 
             {syncMsg && (
-              <p className="mt-2 text-xs text-gray-400">{syncMsg}</p>
+              <p className="mt-2 text-[10px] text-slate-500 font-mono">{syncMsg}</p>
             )}
-          </>
+          </div>
         )}
       </div>
     </motion.div>

@@ -287,20 +287,20 @@ export default function SettingsPage() {
     router.push('/login')
   }
 
-  if (fetching) return <div className="flex min-h-screen bg-gray-950"></div>
+  if (fetching) return <div className="flex min-h-screen bg-slate-50"></div>
 
   return (
-    <div className="flex min-h-screen bg-gray-950 text-white">
+    <div className="flex min-h-screen bg-slate-50 text-slate-900">
       <Sidebar userName={displayName} />
 
       <main className="flex-1 p-6 space-y-6 overflow-y-auto">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Settings</h1>
-          <p className="text-sm text-gray-400">Configure your profile, accounts, theme preferences, and credentials.</p>
+          <p className="text-sm text-slate-600">Configure your profile, accounts, theme preferences, and credentials.</p>
         </div>
 
         {/* Tab Selection */}
-        <div className="flex gap-2 border-b border-gray-800/50 pb-4 overflow-x-auto">
+        <div className="flex gap-2 border-b border-slate-200 pb-4 overflow-x-auto">
           {(['profile', 'accounts', 'preferences', 'logout'] as TabType[]).map((tab) => (
             <button
               key={tab}
@@ -309,14 +309,14 @@ export default function SettingsPage() {
                 setMessage(null)
                 setError(null)
               }}
-              className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-lg overflow-hidden group hover:text-white ${
-                activeTab === tab ? 'text-white' : 'text-gray-400'
+              className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-lg overflow-hidden group hover:text-blue-600 ${
+                activeTab === tab ? 'text-blue-700' : 'text-slate-500'
               }`}
             >
               {activeTab === tab && (
                 <motion.div
                   layoutId="active-settings-tab"
-                  className="absolute inset-0 bg-purple-900/40 border border-purple-800/30 rounded-lg"
+                  className="absolute inset-0 bg-blue-100 border border-blue-200 rounded-lg"
                   transition={{
                     type: 'spring',
                     stiffness: 300,
@@ -342,51 +342,51 @@ export default function SettingsPage() {
                 exit={{ opacity: 0, y: -10 }}
                 className="space-y-4"
               >
-                <form onSubmit={handleProfileSave} className="bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-4 shadow-xl">
-                  <div className="flex items-center gap-2 text-purple-400 border-b border-gray-800 pb-2">
+                <form onSubmit={handleProfileSave} className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4 shadow-sm">
+                  <div className="flex items-center gap-2 text-blue-600 border-b border-slate-200 pb-2">
                     <User className="w-5 h-5" />
-                    <h3 className="font-semibold text-white">Profile Details</h3>
+                    <h3 className="font-semibold text-slate-900">Profile Details</h3>
                   </div>
 
                   <div className="space-y-1">
-                    <label className="block text-sm font-medium text-gray-400">Display Name</label>
+                    <label className="block text-sm font-medium text-slate-700">Display Name</label>
                     <input
                       type="text"
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       placeholder="e.g. Dhruv R."
-                      className="w-full bg-gray-950 border border-gray-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-purple-500 text-sm"
+                      className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-slate-900 focus:outline-none focus:border-blue-500 text-sm"
                       required
                     />
                   </div>
 
                   <div className="space-y-1">
-                    <label className="block text-sm font-medium text-gray-400">Username Slug (Public URL)</label>
-                    <div className="flex items-center bg-gray-950 border border-gray-800 rounded-lg overflow-hidden focus-within:border-purple-500">
-                      <span className="bg-gray-900 text-gray-500 px-3 py-2 border-r border-gray-800 text-sm font-mono select-none">/u/</span>
+                    <label className="block text-sm font-medium text-slate-700">Username Slug (Public URL)</label>
+                    <div className="flex items-center bg-white border border-slate-200 rounded-lg overflow-hidden focus-within:border-blue-500">
+                      <span className="bg-slate-50 text-slate-500 px-3 py-2 border-r border-slate-200 text-sm font-mono select-none">/u/</span>
                       <input
                         type="text"
                         value={usernameSlug}
                         onChange={(e) => setUsernameSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ''))}
                         placeholder="username"
-                        className="bg-transparent border-none w-full px-3 py-2 text-white focus:outline-none text-sm font-mono"
+                        className="bg-transparent border-none w-full px-3 py-2 text-slate-900 focus:outline-none text-sm font-mono"
                         required
                       />
                     </div>
                   </div>
 
                   <div className="space-y-1">
-                    <label className="block text-sm font-medium text-gray-400">Bio</label>
+                    <label className="block text-sm font-medium text-slate-700">Bio</label>
                     <textarea
                       value={bio}
                       onChange={(e) => setBio(e.target.value)}
                       placeholder="Tell recruiters about yourself..."
-                      className="w-full bg-gray-950 border border-gray-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-purple-500 text-sm h-24 resize-none"
+                      className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-slate-900 focus:outline-none focus:border-blue-500 text-sm h-24 resize-none"
                     />
                   </div>
 
                   <div className="space-y-1">
-                    <label className="block text-sm font-medium text-gray-400">Weekly Coding Goal (Hours)</label>
+                    <label className="block text-sm font-medium text-slate-700">Weekly Coding Goal (Hours)</label>
                     <input
                       type="number"
                       step="0.5"
@@ -394,14 +394,14 @@ export default function SettingsPage() {
                       max="168"
                       value={weeklyGoal}
                       onChange={(e) => setWeeklyGoal(e.target.value)}
-                      className="w-full bg-gray-950 border border-gray-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-purple-500 text-sm font-mono"
+                      className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-slate-900 focus:outline-none focus:border-blue-500 text-sm font-mono"
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors disabled:opacity-50"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors disabled:opacity-50"
                   >
                     {submitting ? 'Saving...' : 'Save Profile'}
                   </button>
@@ -417,19 +417,19 @@ export default function SettingsPage() {
                 exit={{ opacity: 0, y: -10 }}
                 className="space-y-4"
               >
-                <form onSubmit={handleAccountsSave} className="bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-4 shadow-xl">
-                  <div className="flex items-center gap-2 text-purple-400 border-b border-gray-800 pb-2">
+                <form onSubmit={handleAccountsSave} className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4 shadow-sm">
+                  <div className="flex items-center gap-2 text-blue-600 border-b border-slate-200 pb-2">
                     <Sparkles className="w-5 h-5" />
-                    <h3 className="font-semibold text-white">Developer Integrations</h3>
+                    <h3 className="font-semibold text-slate-900">Developer Integrations</h3>
                   </div>
 
                   {/* GitHub Connected State */}
-                  <div className="flex items-center justify-between p-3 bg-gray-950/40 border border-gray-850 rounded-lg">
+                  <div className="flex items-center justify-between p-3 bg-slate-50 border border-slate-200 rounded-lg">
                     <div className="flex items-center gap-3">
-                      <GitHubIcon className="w-6 h-6 text-white" />
+                      <GitHubIcon className="w-6 h-6 text-slate-700" />
                       <div>
                         <p className="text-sm font-medium">GitHub Account</p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-slate-500">
                           {githubConnected ? 'Linked and syncing weekly activity.' : 'Not connected yet.'}
                         </p>
                       </div>
@@ -445,31 +445,31 @@ export default function SettingsPage() {
                   </div>
 
                   <div className="space-y-1">
-                    <label className="block text-sm font-medium text-gray-400">Codeforces Handle</label>
+                    <label className="block text-sm font-medium text-slate-700">Codeforces Handle</label>
                     <input
                       type="text"
                       value={cfHandle}
                       onChange={(e) => setCfHandle(e.target.value)}
                       placeholder="e.g. tourist"
-                      className="w-full bg-gray-950 border border-gray-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-purple-500 text-sm"
+                      className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-slate-900 focus:outline-none focus:border-blue-500 text-sm"
                     />
                   </div>
 
                   <div className="space-y-1">
-                    <label className="block text-sm font-medium text-gray-400">LeetCode Username</label>
+                    <label className="block text-sm font-medium text-slate-700">LeetCode Username</label>
                     <input
                       type="text"
                       value={lcUsername}
                       onChange={(e) => setLcUsername(e.target.value)}
                       placeholder="e.g. neetcode"
-                      className="w-full bg-gray-950 border border-gray-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-purple-500 text-sm"
+                      className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-slate-900 focus:outline-none focus:border-blue-500 text-sm"
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors disabled:opacity-50"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors disabled:opacity-50"
                   >
                     {submitting ? 'Syncing...' : 'Save & Sync Handles'}
                   </button>
@@ -485,23 +485,23 @@ export default function SettingsPage() {
                 exit={{ opacity: 0, y: -10 }}
                 className="space-y-4"
               >
-                <form onSubmit={handlePreferencesSave} className="bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-4 shadow-xl">
-                  <div className="flex items-center gap-2 text-purple-400 border-b border-gray-800 pb-2">
+                <form onSubmit={handlePreferencesSave} className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4 shadow-sm">
+                  <div className="flex items-center gap-2 text-blue-600 border-b border-slate-200 pb-2">
                     <Sun className="w-5 h-5" />
-                    <h3 className="font-semibold text-white">App Preferences</h3>
+                    <h3 className="font-semibold text-slate-900">App Preferences</h3>
                   </div>
 
                   {/* Public visibility toggle */}
                   <div className="flex items-center justify-between p-2">
                     <div>
                       <p className="text-sm font-semibold">Make Profile Public</p>
-                      <p className="text-xs text-gray-500">Allow recruiters to view your profile without logging in.</p>
+                      <p className="text-xs text-slate-500">Allow recruiters to view your profile without logging in.</p>
                     </div>
                     <button
                       type="button"
                       onClick={() => setIsPublic(!isPublic)}
                       className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-                        isPublic ? 'bg-purple-600' : 'bg-gray-800'
+                        isPublic ? 'bg-blue-600' : 'bg-slate-300'
                       }`}
                     >
                       <span
@@ -516,20 +516,20 @@ export default function SettingsPage() {
                   <div className="flex items-center justify-between p-2">
                     <div>
                       <p className="text-sm font-semibold">Appearance Theme</p>
-                      <p className="text-xs text-gray-500">Choose between dark mode and light mode.</p>
+                      <p className="text-xs text-slate-500">Choose between dark mode and light mode.</p>
                     </div>
-                    <div className="flex bg-gray-950 border border-gray-800 p-0.5 rounded-lg">
+                    <div className="flex bg-slate-100 border border-slate-200 p-0.5 rounded-lg">
                       <button
                         type="button"
                         onClick={() => setTheme('dark')}
-                        className={`p-1.5 rounded-md transition-colors ${theme === 'dark' ? 'bg-purple-900/50 text-purple-400' : 'text-gray-500'}`}
+                        className={`p-1.5 rounded-md transition-colors ${theme === 'dark' ? 'bg-white shadow-sm text-blue-600' : 'text-slate-400 hover:text-slate-600'}`}
                       >
                         <Moon className="w-4 h-4" />
                       </button>
                       <button
                         type="button"
                         onClick={() => setTheme('light')}
-                        className={`p-1.5 rounded-md transition-colors ${theme === 'light' ? 'bg-purple-900/50 text-purple-400' : 'text-gray-500'}`}
+                        className={`p-1.5 rounded-md transition-colors ${theme === 'light' ? 'bg-white shadow-sm text-blue-600' : 'text-slate-400 hover:text-slate-600'}`}
                       >
                         <Sun className="w-4 h-4" />
                       </button>
@@ -539,26 +539,26 @@ export default function SettingsPage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors disabled:opacity-50"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors disabled:opacity-50"
                   >
                     Save Preferences
                   </button>
                 </form>
 
                 {/* Danger Zone for GDPR Compliance */}
-                <div className="bg-red-950/20 border border-red-900/40 rounded-2xl p-6 mt-6 space-y-4">
-                  <div className="flex items-center gap-2 text-red-400 border-b border-red-900/30 pb-2">
+                <div className="bg-red-50 border border-red-100 rounded-2xl p-6 mt-6 space-y-4">
+                  <div className="flex items-center gap-2 text-red-400 border-b border-red-200 pb-2">
                     <ShieldAlert className="w-5 h-5 animate-pulse" />
-                    <h3 className="font-semibold text-white">Danger Zone (GDPR Compliance)</h3>
+                    <h3 className="font-semibold text-red-900">Danger Zone (GDPR Compliance)</h3>
                   </div>
-                  <p className="text-xs text-gray-400">
+                  <p className="text-xs text-red-700">
                     Purge all data from DevBoard tables (projects, timed sessions, handles, AI summaries, and profile credentials) permanently.
                   </p>
                   <button
                     type="button"
                     onClick={handleDeleteAllData}
                     disabled={submitting}
-                    className="w-full bg-red-900/40 hover:bg-red-800 border border-red-750 text-red-300 hover:text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors"
+                    className="w-full bg-red-100 hover:bg-red-200 border border-red-200 text-red-700 hover:text-red-900 font-medium px-4 py-2 rounded-lg text-sm transition-colors"
                   >
                     Delete All Data & Reset Account
                   </button>
@@ -574,20 +574,20 @@ export default function SettingsPage() {
                 exit={{ opacity: 0, y: -10 }}
                 className="space-y-4"
               >
-                <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-4 shadow-xl">
-                  <div className="flex items-center gap-2 text-red-400 border-b border-gray-800 pb-2">
+                <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4 shadow-sm">
+                  <div className="flex items-center gap-2 text-red-400 border-b border-slate-200 pb-2">
                     <ShieldAlert className="w-5 h-5" />
-                    <h3 className="font-semibold text-white">Log Out Account</h3>
+                    <h3 className="font-semibold text-slate-900">Log Out Account</h3>
                   </div>
 
-                  <p className="text-sm text-gray-400">
+                  <p className="text-sm text-slate-600">
                     Are you sure you want to end your current session? You will need to log back in to access your dashboard.
                   </p>
 
                   <button
                     onClick={handleLogout}
                     disabled={submitting}
-                    className="w-full flex items-center justify-center gap-2 bg-red-950/40 hover:bg-red-900 border border-red-800 text-red-300 hover:text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors"
+                    className="w-full flex items-center justify-center gap-2 bg-red-50 hover:bg-red-100 border border-red-200 text-red-700 hover:text-red-800 font-medium px-4 py-2 rounded-lg text-sm transition-colors"
                   >
                     <LogOut className="w-4 h-4" /> Log Out
                   </button>

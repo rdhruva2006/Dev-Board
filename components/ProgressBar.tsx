@@ -3,9 +3,9 @@ import { motion } from 'framer-motion'
 
 export default function ProgressBar({ progress }: { progress: number }) {
   return (
-    <div className="h-2 w-full rounded-full bg-gray-800 overflow-hidden">
+    <div className="h-2 w-full rounded-full bg-slate-200 overflow-hidden">
       <motion.div
-        className="h-full rounded-full bg-purple-500"
+        className="h-full rounded-full bg-amber-400"
         initial={{ scaleX: 0 }}
         animate={{ scaleX: progress / 100 }}
         style={{ originX: 0 }}

@@ -1,78 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-/* Enable class-based dark mode — reads className="dark" on <html> */
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: 'Inter', var(--font-geist-sans), sans-serif;
+  --font-mono: 'Space Grotesk', var(--font-geist-mono), monospace;
+
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-base: var(--base);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-hover: var(--surface-hover);
+
+  --color-border-subtle: var(--border-subtle);
+  --color-border-default: var(--border-default);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
 }
 
-/* Light Theme Override Stylesheet for DevBoard */
-html:not(.dark) body {
-  background-color: #f8fafc !important;
-  color: #0f172a !important;
+:root {
+  --accent: #2563eb; /* Royal Blue */
+  --accent-soft: rgba(37, 99, 235, 0.1);
+  --accent-foreground: #ffffff;
+
+  --base: #f8fafc; /* Slate 50 */
+  --surface: #ffffff;
+  --surface-elevated: #ffffff;
+  --surface-hover: #f1f5f9;
+
+  --border-subtle: #f1f5f9;
+  --border-default: #e2e8f0;
+
+  --text-primary: #0f172a; /* Slate 900 */
+  --text-secondary: #475569; /* Slate 600 */
+  --text-muted: #94a3b8;
+
+  --success: #10b981;
+  --warning: #f59e0b; /* Amber/Yellow */
+  --danger: #ef4444;
 }
 
-html:not(.dark) .bg-gray-950 {
-  background-color: #ffffff !important;
+body {
+  background-color: var(--base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
 }
 
-html:not(.dark) .bg-gray-900 {
-  background-color: #f1f5f9 !important;
-  border-color: #cbd5e1 !important;
+/* Premium SaaS panel */
+.glass-panel {
+  background: var(--surface);
+  border: 1px solid var(--border-default);
+  box-shadow: 0 10px 40px -10px rgba(37, 99, 235, 0.08);
+  border-radius: 1.5rem !important; /* rounded-3xl */
+  transition: all 0.2s ease-in-out;
 }
 
-html:not(.dark) .bg-gray-900\/80 {
-  background-color: rgba(241, 245, 249, 0.8) !important;
-  border-color: #cbd5e1 !important;
-}
-
-html:not(.dark) .border-gray-800 {
-  border-color: #cbd5e1 !important;
-}
-
-html:not(.dark) .border-gray-850 {
-  border-color: #cbd5e1 !important;
-}
-
-html:not(.dark) .text-white {
-  color: #0f172a !important;
-}
-
-html:not(.dark) .text-gray-400 {
-  color: #475569 !important;
-}
-
-html:not(.dark) .text-gray-300 {
-  color: #1e293b !important;
-}
-
-html:not(.dark) .text-gray-200 {
-  color: #0f172a !important;
-}
-
-html:not(.dark) .bg-gray-950\/20 {
-  background-color: rgba(226, 232, 240, 0.4) !important;
-  border-color: #cbd5e1 !important;
-}
-
-html:not(.dark) .bg-gray-800\/50 {
-  background-color: rgba(226, 232, 240, 0.8) !important;
-}
-
-html:not(.dark) .bg-gray-950\/40 {
-  background-color: rgba(226, 232, 240, 0.5) !important;
-}
-
-html:not(.dark) .bg-gray-900\/30 {
-  background-color: rgba(241, 245, 249, 0.5) !important;
-  border-color: #cbd5e1 !important;
-}
-
-html:not(.dark) select,
-html:not(.dark) input,
-html:not(.dark) textarea {
-  background-color: #ffffff !important;
-  color: #0f172a !important;
+/* De-activate option 1 background pulse animations */
+.animate-pulse-slow-1, .animate-pulse-slow-2 {
+  opacity: 0 !important;
+  display: none !important;
 }

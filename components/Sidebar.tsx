@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Home, FolderGit2, Settings } from 'lucide-react'
+import { Home, FolderGit2, Settings, Terminal } from 'lucide-react'
 import LogoutButton from './LogoutButton'
 
 const links = [
@@ -16,11 +16,22 @@ export default function Sidebar({ userName }: { userName?: string }) {
   const pathname = usePathname()
 
   return (
-    <nav className="hidden md:flex md:flex-col md:w-20 lg:w-64 p-4 gap-2 bg-gray-900/30 border-r border-gray-800/50 min-h-screen shrink-0">
+    <nav className="hidden md:flex md:flex-col md:w-20 lg:w-64 p-4 gap-2 bg-white/80 backdrop-blur-xl border-r border-slate-200 min-h-screen shrink-0 relative z-20">
+      <div className="flex items-center gap-2 px-2 mb-8 mt-2">
+        <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-blue-50 border border-blue-200 text-blue-600 shrink-0">
+          <Terminal className="w-5 h-5 animate-pulse" />
+        </div>
+        <span className="hidden lg:block font-extrabold text-slate-900 font-sans uppercase tracking-wider text-sm">
+          DevBoard <span className="text-blue-500">//</span> HUD
+        </span>
+      </div>
+
       {userName && (
-        <div className="mb-6 px-3">
-          <p className="text-xs text-gray-500 uppercase font-semibold">Logged in as</p>
-          <p className="text-sm font-medium text-white truncate">{userName}</p>
+        <div className="mb-6 px-3 hidden lg:block">
+          <p className="text-[9px] text-slate-500 uppercase font-bold tracking-widest font-mono">
+            System Node // User
+          </p>
+          <p className="text-xs font-bold text-blue-600 font-mono truncate mt-0.5">{userName.toUpperCase()}</p>
         </div>
       )}
 
@@ -33,30 +44,34 @@ export default function Sidebar({ userName }: { userName?: string }) {
             <Link
               key={link.href}
               href={link.href}
-              className="relative flex items-center gap-3 px-3 py-2 rounded-lg text-left overflow-hidden group transition-colors hover:text-white"
+              className="relative flex items-center gap-3 px-3 py-2.5 rounded-lg overflow-hidden group transition-colors"
             >
               {isActive && (
                 <motion.div
                   layoutId="active-pill"
-                  className="absolute inset-0 bg-purple-900/40 border border-purple-800/30 rounded-lg"
-                  transition={{
-                    type: 'spring',
-                    stiffness: 300,
-                    damping: 25,
-                  }}
+                  className="absolute inset-0 bg-blue-50 border border-blue-200 rounded-lg shadow-sm"
+                  transition={{ type: 'spring', stiffness: 300, damping: 25 }}
                 />
               )}
 
-              <Icon className={`relative z-10 w-5 h-5 transition-colors ${isActive ? 'text-purple-400' : 'text-gray-400 group-hover:text-gray-200'}`} />
-              <span className={`relative z-10 hidden lg:inline font-medium transition-colors ${isActive ? 'text-white' : 'text-gray-400 group-hover:text-gray-200'}`}>
+              <Icon
+                className={`relative z-10 w-5 h-5 transition-colors ${
+                  isActive ? 'text-blue-600' : 'text-slate-500 group-hover:text-slate-900'
+                }`}
+              />
+              <span
+                className={`relative z-10 hidden lg:inline text-xs font-bold font-mono uppercase tracking-wider transition-colors ${
+                  isActive ? 'text-slate-900' : 'text-slate-500 group-hover:text-slate-900'
+                }`}
+              >
                 {link.label}
               </span>
             </Link>
           )
         })}
       </div>
-      
-      <div className="mt-auto">
+
+      <div className="mt-auto pt-4 border-t border-slate-200">
         <LogoutButton />
       </div>
     </nav>

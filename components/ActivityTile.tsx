@@ -25,30 +25,32 @@ export default function ActivityTile({ contributionGrid, githubUsername }: Activ
   return (
     <motion.section
       variants={item}
-      className="rounded-2xl bg-gray-900/80 border border-gray-800 p-5"
+      className="glass-panel p-5 hover:border-blue-300 hover:shadow-md transition-all duration-300 h-full flex flex-col justify-between"
     >
-      <h3 className="font-medium mb-1">
-        {githubUsername ? `@${githubUsername}'s Activity` : 'Activity'}
-      </h3>
-      {!contributionGrid && (
-        <p className="text-xs text-gray-500 mb-3">Connect GitHub for real data</p>
-      )}
-      {contributionGrid && <div className="mb-3" />}
+      <div>
+        <h3 className="font-bold text-slate-700 text-xs font-mono uppercase tracking-wider mb-1">
+          {githubUsername ? `@${githubUsername}'s Activity` : 'Activity'}
+        </h3>
+        {!contributionGrid && (
+          <p className="text-[10px] text-slate-500 font-mono mb-3">Connect GitHub for real telemetry</p>
+        )}
+        {contributionGrid && <div className="mb-3" />}
+      </div>
 
-      <div className="grid grid-cols-7 gap-1.5">
+      <div className="grid grid-cols-7 gap-1.5 self-center mt-2">
         {grid.map((level, i) => (
           <div
             key={i}
             className={`w-5 h-5 rounded-sm ${
               level === 0
-                ? 'bg-gray-800'
+                ? 'bg-slate-100 border border-slate-200'
                 : level === 1
-                ? 'bg-purple-900'
+                ? 'bg-blue-100 border border-blue-200'
                 : level === 2
-                ? 'bg-purple-600'
+                ? 'bg-blue-300 border border-blue-400'
                 : level === 3
-                ? 'bg-purple-500'
-                : 'bg-purple-400'
+                ? 'bg-blue-500 border border-blue-600'
+                : 'bg-blue-600 border border-blue-700'
             }`}
           />
         ))}

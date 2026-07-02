@@ -19,7 +19,7 @@ interface GenerateResponse {
 function CustomMarkdown({ text }: { text: string }) {
   const lines = text.split('\n')
   return (
-    <div className="space-y-2.5 text-sm text-gray-300">
+    <div className="space-y-3 text-xs text-slate-600 font-sans">
       {lines.map((line, idx) => {
         const trimmed = line.trim()
         if (!trimmed) return <div key={idx} className="h-2" />
@@ -27,7 +27,7 @@ function CustomMarkdown({ text }: { text: string }) {
         // Header ###
         if (trimmed.startsWith('###')) {
           return (
-            <h4 key={idx} className="text-base font-semibold text-purple-400 mt-4 mb-2">
+            <h4 key={idx} className="text-sm font-bold text-blue-700 uppercase font-mono mt-4 mb-2 tracking-wide">
               {trimmed.substring(3).trim()}
             </h4>
           )
@@ -35,7 +35,7 @@ function CustomMarkdown({ text }: { text: string }) {
         // Header ####
         if (trimmed.startsWith('####')) {
           return (
-            <h5 key={idx} className="text-sm font-semibold text-gray-200 mt-3 mb-1">
+            <h5 key={idx} className="text-xs font-bold text-slate-800 mt-3 mb-1 uppercase font-mono">
               {trimmed.substring(4).trim()}
             </h5>
           )
@@ -44,7 +44,7 @@ function CustomMarkdown({ text }: { text: string }) {
         if (trimmed.startsWith('-') || trimmed.startsWith('*')) {
           const content = trimmed.substring(1).trim()
           return (
-            <li key={idx} className="list-none pl-5 relative before:content-['•'] before:absolute before:left-1 before:text-purple-500 before:font-bold">
+            <li key={idx} className="list-none pl-5 relative before:content-['//'] before:absolute before:left-0 before:text-blue-500 before:font-mono before:text-[10px] before:font-bold">
               {renderBoldText(content)}
             </li>
           )
@@ -56,7 +56,7 @@ function CustomMarkdown({ text }: { text: string }) {
           const content = match ? match[2].trim() : trimmed
           return (
             <li key={idx} className="list-none pl-6 relative">
-              <span className="absolute left-0 text-purple-400 font-mono font-bold text-xs top-0.5">{num}</span>
+              <span className="absolute left-0 text-blue-600 font-mono font-bold text-[10px] top-0.5">{num}</span>
               {renderBoldText(content)}
             </li>
           )
@@ -72,7 +72,7 @@ function CustomMarkdown({ text }: { text: string }) {
 // Helper to parse **bold** text inline
 function renderBoldText(text: string) {
   const parts = text.split(/\*\*(.*?)\*\*/g)
-  return parts.map((part, i) => (i % 2 === 1 ? <strong key={i} className="text-white font-semibold">{part}</strong> : part))
+  return parts.map((part, i) => (i % 2 === 1 ? <strong key={i} className="text-slate-900 font-bold font-sans">{part}</strong> : part))
 }
 
 export default function AISummaryTile({ className = 'md:col-span-2 lg:col-span-3' }: { className?: string }) {
@@ -130,12 +130,12 @@ export default function AISummaryTile({ className = 'md:col-span-2 lg:col-span-3
 
   if (loading) {
     return (
-      <div className={`${className} rounded-2xl bg-gray-900 border border-gray-800 p-6 animate-pulse space-y-4`}>
-        <div className="h-4 w-48 bg-gray-800 rounded" />
+      <div className={`${className} glass-panel p-6 animate-pulse space-y-4`}>
+        <div className="h-4 w-48 bg-slate-200 rounded" />
         <div className="space-y-2">
-          <div className="h-3 w-full bg-gray-800/50 rounded" />
-          <div className="h-3 w-5/6 bg-gray-800/50 rounded" />
-          <div className="h-3 w-4/5 bg-gray-800/50 rounded" />
+          <div className="h-3 w-full bg-slate-100 rounded" />
+          <div className="h-3 w-5/6 bg-slate-100 rounded" />
+          <div className="h-3 w-4/5 bg-slate-100 rounded" />
         </div>
       </div>
     )
@@ -145,25 +145,25 @@ export default function AISummaryTile({ className = 'md:col-span-2 lg:col-span-3
     <motion.div
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`relative overflow-hidden rounded-2xl bg-gray-900/80 border border-gray-800 p-6 group shadow-xl ${className}`}
+      className={`relative overflow-hidden glass-panel p-6 group hover:border-blue-300 hover:shadow-md transition-all duration-300 ${className}`}
     >
       {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-transparent to-purple-800/5 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-blue-50/30 pointer-events-none" />
 
       <div className="relative z-10 flex flex-col h-full justify-between gap-6">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-gray-800/50 pb-3">
+        <div className="flex items-center justify-between border-b border-slate-200 pb-3">
           <div className="flex items-center gap-2.5">
-            <Sparkles className="w-5 h-5 text-purple-400" />
+            <Sparkles className="w-4 h-4 text-blue-500 animate-pulse" />
             <div>
-              <h3 className="font-semibold text-white">AI Weekly Summary</h3>
-              <p className="text-xs text-gray-500">Weekly developer productivity coaching & goal tracking</p>
+              <h3 className="font-bold text-slate-800 text-sm font-mono uppercase tracking-wider">AI Weekly Summary</h3>
+              <p className="text-[11px] text-slate-500 font-sans">Weekly developer diagnostics & cognitive digest</p>
             </div>
           </div>
           <button
             onClick={handleGenerate}
             disabled={generating}
-            className="flex items-center gap-2 bg-purple-600/10 hover:bg-purple-600/20 border border-purple-800/50 disabled:opacity-50 text-purple-300 text-xs font-medium px-3.5 py-1.5 rounded-lg transition-colors"
+            className="flex items-center gap-2 bg-blue-50 hover:bg-blue-100 border border-blue-200 disabled:opacity-50 text-blue-700 text-xs font-bold font-mono tracking-wide uppercase px-3.5 py-1.5 rounded-xl transition-all"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${generating ? 'animate-spin' : ''}`} />
             {generating ? 'Analyzing…' : summary ? 'Update Report' : 'Generate Report'}
@@ -178,7 +178,7 @@ export default function AISummaryTile({ className = 'md:col-span-2 lg:col-span-3
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="flex items-center gap-2 text-red-400 text-sm bg-red-950/20 border border-red-900/30 p-3 rounded-lg"
+                className="flex items-center gap-2 text-red-600 text-sm bg-red-50 border border-red-200 p-3 rounded-lg"
               >
                 <AlertCircle className="w-4 h-4 shrink-0" />
                 <span>{error}</span>
@@ -191,11 +191,11 @@ export default function AISummaryTile({ className = 'md:col-span-2 lg:col-span-3
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="relative bg-gray-950/20 rounded-xl border border-gray-850/50 p-4"
+                className="relative bg-slate-50/50 rounded-xl border border-slate-200 p-4"
               >
-                <Quote className="absolute top-2 right-4 w-8 h-8 text-gray-800/40 pointer-events-none" />
+                <Quote className="absolute top-2 right-4 w-8 h-8 text-blue-100 pointer-events-none" />
                 <CustomMarkdown text={summary.summary} />
-                <p className="text-[10px] text-gray-500 font-mono mt-4 text-right">
+                <p className="text-[10px] text-slate-400 font-mono mt-4 text-right">
                   Generated on {new Date(summary.created_at).toLocaleDateString()}
                 </p>
               </motion.div>
@@ -204,11 +204,11 @@ export default function AISummaryTile({ className = 'md:col-span-2 lg:col-span-3
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="flex flex-col items-center justify-center text-center p-8 border border-dashed border-gray-850 rounded-xl"
+                  className="flex flex-col items-center justify-center text-center p-8 border border-dashed border-slate-300 rounded-xl"
                 >
-                  <Sparkles className="w-8 h-8 text-gray-700 mb-3" />
-                  <p className="text-sm text-gray-300 font-medium mb-1">No reports compiled yet</p>
-                  <p className="text-xs text-gray-500 max-w-sm">
+                  <Sparkles className="w-8 h-8 text-slate-400 mb-3" />
+                  <p className="text-sm text-slate-600 font-medium mb-1">No reports compiled yet</p>
+                  <p className="text-xs text-slate-500 max-w-sm">
                     Generate your weekly developer report to get code feedback, streak reviews, and goals tracking.
                   </p>
                 </motion.div>

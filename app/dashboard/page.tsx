@@ -13,6 +13,7 @@ import CourseGrid from '@/components/CourseGrid'
 import GoalsTile from '@/components/GoalsTile'
 import SessionTimer from '@/components/SessionTimer'
 import BentoGrid from '@/components/BentoGrid'
+import InstructionsBanner from '@/components/InstructionsBanner'
 
 import type { GitHubConnection } from '@/types/github'
 import type { CodingProfile, CodingStats } from '@/types/coding'
@@ -93,10 +94,32 @@ export default async function DashboardPage() {
   const weeklyGoal = profile?.weekly_goal_hours ?? 10.0
 
   return (
-    <div className="flex min-h-screen bg-gray-950 text-white">
+    <div className="flex min-h-screen bg-slate-50 text-slate-900 relative overflow-hidden">
+      {/* Ambient background glow blobs */}
+      <div className="absolute top-[10%] left-[20%] w-[35rem] h-[35rem] rounded-full bg-blue-300/30 blur-[120px] pointer-events-none animate-pulse-slow-1" />
+      <div className="absolute bottom-[15%] right-[10%] w-[30rem] h-[30rem] rounded-full bg-amber-300/30 blur-[100px] pointer-events-none animate-pulse-slow-2" />
+
       <Sidebar userName={displayName} />
 
-      <main className="flex-1 p-6 space-y-6 overflow-y-auto pb-24 md:pb-6">
+      <main className="flex-1 p-6 space-y-6 overflow-y-auto pb-24 md:pb-6 relative z-10 max-w-7xl mx-auto w-full">
+        {/* Premium Dashboard Header */}
+        <div className="space-y-1.5 font-sans border-b border-slate-200 pb-5">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] bg-blue-50 border border-blue-200 text-blue-700 font-bold px-2 py-0.5 rounded-full uppercase tracking-widest font-mono">
+              Workspace Active
+            </span>
+          </div>
+          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900 font-sans">
+            Welcome back, {displayName.split(' ')[0]}
+          </h1>
+          <p className="text-xs md:text-sm text-slate-500 font-sans leading-relaxed max-w-2xl">
+            Track your coding metrics, analyze your GitHub activity, and stay on top of your daily goals in one unified workspace.
+          </p>
+        </div>
+
+        {/* User Directives / Instructions Banner */}
+        <InstructionsBanner />
+
         {/* Bento Grid */}
         <BentoGrid>
           {/* Row 1: HeroTile */}
@@ -154,7 +177,7 @@ export default async function DashboardPage() {
 
           {/* Row 5: CourseGrid (full width) */}
           <div className="col-span-1 md:col-span-2 lg:col-span-3 order-9 md:order-9 lg:order-9 space-y-3">
-            <h2 className="text-xl font-semibold">Your Courses</h2>
+            <h2 className="text-xl font-semibold text-slate-900">Your Courses</h2>
             <Suspense fallback={<div className="text-gray-500 text-sm">Loading courses…</div>}>
               <CourseGrid />
             </Suspense>

@@ -19,9 +19,9 @@ export default async function CourseGrid() {
   if (error) return <p className="text-red-400">Error: {error.message}</p>
   if (!data || data.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center p-12 text-center rounded-2xl bg-gray-900/40 border border-gray-800 border-dashed">
-        <p className="text-xl font-medium text-gray-300 mb-2">No courses yet!</p>
-        <p className="text-gray-500">You haven't started any courses. When you do, they'll appear right here.</p>
+      <div className="flex flex-col items-center justify-center p-12 text-center rounded-2xl bg-slate-50 border border-slate-200 border-dashed">
+        <p className="text-xl font-medium text-slate-800 mb-2">No courses yet!</p>
+        <p className="text-slate-500">You haven't started any courses. When you do, they'll appear right here.</p>
       </div>
     )
   }

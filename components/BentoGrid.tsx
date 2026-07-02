@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.08 } }
+  show: { transition: { staggerChildren: 0.08 } },
 }
 
 export default function BentoGrid({ children }: { children: React.ReactNode }) {
@@ -12,7 +12,7 @@ export default function BentoGrid({ children }: { children: React.ReactNode }) {
       variants={container}
       initial="hidden"
       animate="show"
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-fr gap-4"
     >
       {children}
     </motion.div>

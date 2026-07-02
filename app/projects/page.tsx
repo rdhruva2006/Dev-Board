@@ -237,18 +237,18 @@ export default function ProjectsPage() {
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-950 text-white">
+    <div className="flex min-h-screen bg-slate-50 text-slate-900">
       <Sidebar userName={displayName} />
 
       <main className="flex-1 p-6 space-y-6 overflow-y-auto">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold tracking-tight">Project Tracker</h1>
-            <p className="text-sm text-gray-400">Manage your builds, log your dev hours, and track shipping metrics.</p>
+            <p className="text-sm text-slate-600">Manage your builds, log your dev hours, and track shipping metrics.</p>
           </div>
           <button
             onClick={openAddModal}
-            className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white font-medium px-4 py-2 rounded-lg transition-colors shadow-lg shadow-purple-600/10 self-start md:self-auto"
+            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg transition-colors shadow-lg shadow-blue-600/10 self-start md:self-auto"
           >
             <Plus className="w-4 h-4" /> Add Project
           </button>
@@ -260,19 +260,19 @@ export default function ProjectsPage() {
             {loading ? (
               <div className="space-y-4">
                 {[0, 1].map(i => (
-                  <div key={i} className="h-44 bg-gray-900 border border-gray-800 rounded-2xl animate-pulse" />
+                  <div key={i} className="h-44 bg-white border border-slate-200 rounded-2xl animate-pulse" />
                 ))}
               </div>
             ) : optimisticProjects.length === 0 ? (
-              <div className="flex flex-col items-center justify-center p-16 text-center rounded-2xl bg-gray-900/40 border border-gray-800 border-dashed">
-                <FolderGit2 className="w-12 h-12 text-gray-600 mb-4" />
-                <p className="text-lg font-medium text-gray-300 mb-1">No projects tracked yet</p>
-                <p className="text-sm text-gray-500 max-w-sm mb-4">
+              <div className="flex flex-col items-center justify-center p-16 text-center rounded-2xl bg-slate-50 border border-slate-200 border-dashed">
+                <FolderGit2 className="w-12 h-12 text-slate-400 mb-4" />
+                <p className="text-lg font-medium text-slate-800 mb-1">No projects tracked yet</p>
+                <p className="text-sm text-slate-500 max-w-sm mb-4">
                   Add your first coding project, linking its GitHub repository, to start logging development hours.
                 </p>
                 <button
                   onClick={openAddModal}
-                  className="bg-purple-600/20 hover:bg-purple-600/30 border border-purple-800/50 text-purple-300 text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+                  className="bg-blue-50 hover:bg-blue-100 border border-blue-200 text-blue-700 text-sm font-medium px-4 py-2 rounded-lg transition-colors"
                 >
                   Create Project
                 </button>
@@ -285,19 +285,19 @@ export default function ProjectsPage() {
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05 }}
-                    className="relative overflow-hidden rounded-2xl bg-gray-900/80 border border-gray-800 p-5 group hover:border-gray-700/80 transition-all shadow-md hover:shadow-xl"
+                    className="relative overflow-hidden rounded-2xl bg-white border border-slate-200 p-5 group hover:border-blue-300 transition-all shadow-sm hover:shadow-md"
                   >
                     {/* Header */}
                     <div className="flex items-start justify-between gap-4 mb-2">
                       <div className="space-y-1">
                         <div className="flex items-center gap-3">
-                          <h3 className="font-semibold text-lg text-white group-hover:text-purple-400 transition-colors">
+                          <h3 className="font-semibold text-lg text-slate-900 group-hover:text-blue-600 transition-colors">
                             {project.name}
                           </h3>
                           {getStatusBadge(project.status)}
                         </div>
                         {project.description && (
-                          <p className="text-sm text-gray-400 line-clamp-2 max-w-xl">
+                          <p className="text-sm text-slate-600 line-clamp-2 max-w-xl">
                             {project.description}
                           </p>
                         )}
@@ -307,14 +307,14 @@ export default function ProjectsPage() {
                       <div className="flex items-center gap-1.5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
                         <button
                           onClick={() => openEditModal(project)}
-                          className="p-1.5 text-gray-400 hover:text-white rounded-md bg-gray-800/50 hover:bg-gray-800 transition-colors"
+                          className="p-1.5 text-slate-500 hover:text-slate-900 rounded-md bg-slate-100 hover:bg-slate-200 transition-colors"
                           title="Edit Project"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
                         </button>
                         <button
                           onClick={() => handleDelete(project.id)}
-                          className="p-1.5 text-gray-400 hover:text-red-400 rounded-md bg-gray-800/50 hover:bg-gray-850 transition-colors"
+                          className="p-1.5 text-slate-500 hover:text-red-600 rounded-md bg-slate-100 hover:bg-red-50 transition-colors"
                           title="Delete Project"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -323,14 +323,14 @@ export default function ProjectsPage() {
                     </div>
 
                     {/* Stats Section */}
-                    <div className="grid grid-cols-3 gap-2 my-4 bg-gray-950/40 border border-gray-850 rounded-xl p-3">
-                      <div className="text-center border-r border-gray-850">
-                        <p className="text-lg font-mono font-bold text-purple-400">{project.total_hours}h</p>
-                        <p className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Total Logged</p>
+                    <div className="grid grid-cols-3 gap-2 my-4 bg-slate-50 border border-slate-200 rounded-xl p-3">
+                      <div className="text-center border-r border-slate-200">
+                        <p className="text-lg font-mono font-bold text-blue-600">{project.total_hours}h</p>
+                        <p className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Total Logged</p>
                       </div>
-                      <div className="text-center border-r border-gray-850">
-                        <p className="text-lg font-mono font-bold text-white">{project.session_count}</p>
-                        <p className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Sessions</p>
+                      <div className="text-center border-r border-slate-200">
+                        <p className="text-lg font-mono font-bold text-slate-900">{project.session_count}</p>
+                        <p className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Sessions</p>
                       </div>
                       <div className="text-center flex flex-col items-center justify-center">
                         {project.github_repo_url ? (
@@ -338,14 +338,14 @@ export default function ProjectsPage() {
                             href={project.github_repo_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs text-blue-400 hover:underline hover:text-blue-300 font-medium transition-colors"
+                            className="inline-flex items-center gap-1 text-xs text-blue-600 hover:underline hover:text-blue-700 font-medium transition-colors"
                           >
-                            <GitHubIcon className="w-3.5 h-3.5 text-white" /> Codebase
+                            <GitHubIcon className="w-3.5 h-3.5 text-slate-700" /> Codebase
                           </a>
                         ) : (
-                          <span className="text-[11px] text-gray-600">Local Only</span>
+                          <span className="text-[11px] text-slate-500">Local Only</span>
                         )}
-                        <p className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold mt-0.5">Repo</p>
+                        <p className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold mt-0.5">Repo</p>
                       </div>
                     </div>
 
@@ -355,7 +355,7 @@ export default function ProjectsPage() {
                         {project.tech_stack.map((tag) => (
                           <span
                             key={tag}
-                            className="text-[10px] font-medium px-2 py-0.5 rounded bg-gray-800/80 text-gray-300 border border-gray-700/30"
+                            className="text-[10px] font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200"
                           >
                             {tag}
                           </span>
@@ -377,32 +377,32 @@ export default function ProjectsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15 }}
-              className="rounded-2xl bg-gray-900 border border-gray-800 p-5 space-y-4"
+              className="rounded-2xl bg-white border border-slate-200 p-5 space-y-4"
             >
-              <h3 className="font-semibold text-white flex items-center gap-2">
-                <Trophy className="w-4 h-4 text-yellow-400" /> Track Overview
+              <h3 className="font-semibold text-slate-900 flex items-center gap-2">
+                <Trophy className="w-4 h-4 text-amber-500" /> Track Overview
               </h3>
               
               <div className="space-y-3">
-                <div className="flex items-center justify-between border-b border-gray-850 pb-2">
-                  <span className="text-sm text-gray-400">Total Projects</span>
-                  <span className="font-semibold font-mono text-white">{optimisticProjects.length}</span>
+                <div className="flex items-center justify-between border-b border-slate-200 pb-2">
+                  <span className="text-sm text-slate-600">Total Projects</span>
+                  <span className="font-semibold font-mono text-slate-900">{optimisticProjects.length}</span>
                 </div>
-                <div className="flex items-center justify-between border-b border-gray-850 pb-2">
-                  <span className="text-sm text-gray-400">Total Logged Time</span>
-                  <span className="font-semibold font-mono text-purple-400">
+                <div className="flex items-center justify-between border-b border-slate-200 pb-2">
+                  <span className="text-sm text-slate-600">Total Logged Time</span>
+                  <span className="font-semibold font-mono text-blue-600">
                     {optimisticProjects.reduce((acc, p) => acc + p.total_hours, 0).toFixed(1)} hrs
                   </span>
                 </div>
-                <div className="flex items-center justify-between border-b border-gray-850 pb-2">
-                  <span className="text-sm text-gray-400">Total Sessions</span>
-                  <span className="font-semibold font-mono text-white">
+                <div className="flex items-center justify-between border-b border-slate-200 pb-2">
+                  <span className="text-sm text-slate-600">Total Sessions</span>
+                  <span className="font-semibold font-mono text-slate-900">
                     {optimisticProjects.reduce((acc, p) => acc + p.session_count, 0)}
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-400">Shipped Projects</span>
-                  <span className="font-semibold font-mono text-green-400">
+                  <span className="text-sm text-slate-600">Shipped Projects</span>
+                  <span className="font-semibold font-mono text-emerald-600">
                     {optimisticProjects.filter(p => p.status === 'shipped').length}
                   </span>
                 </div>
@@ -429,15 +429,15 @@ export default function ProjectsPage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="relative z-10 w-full max-w-lg bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl space-y-4"
+                className="relative z-10 w-full max-w-lg bg-white border border-slate-200 rounded-2xl p-6 shadow-2xl space-y-4"
               >
-                <div className="flex items-center justify-between border-b border-gray-800 pb-3">
-                  <h2 className="text-lg font-semibold text-white">
+                <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+                  <h2 className="text-lg font-semibold text-slate-900">
                     {editingProject ? 'Edit Project' : 'New Project'}
                   </h2>
                   <button
                     onClick={() => setShowModal(false)}
-                    className="p-1 hover:bg-gray-800 text-gray-400 hover:text-white rounded-md transition-colors"
+                    className="p-1 hover:bg-slate-100 text-slate-500 hover:text-slate-900 rounded-md transition-colors"
                   >
                     <X className="w-5 h-5" />
                   </button>
@@ -445,7 +445,7 @@ export default function ProjectsPage() {
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-400 mb-1">
+                    <label className="block text-sm font-medium text-slate-700 mb-1">
                       Project Name *
                     </label>
                     <input
@@ -453,32 +453,32 @@ export default function ProjectsPage() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="e.g. Portfolio Website"
-                      className="w-full bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 text-sm"
+                      className="w-full bg-white border border-slate-200 rounded-lg px-4 py-2 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm"
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-400 mb-1">
+                    <label className="block text-sm font-medium text-slate-700 mb-1">
                       Description
                     </label>
                     <textarea
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                       placeholder="What is this project about?"
-                      className="w-full bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 text-sm h-20 resize-none"
+                      className="w-full bg-white border border-slate-200 rounded-lg px-4 py-2 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm h-20 resize-none"
                     />
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-400 mb-1">
+                      <label className="block text-sm font-medium text-slate-700 mb-1">
                         Status
                       </label>
                       <select
                         value={status}
                         onChange={(e) => setStatus(e.target.value as ProjectStatus)}
-                        className="w-full bg-gray-950 border border-gray-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 text-sm"
+                        className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm"
                       >
                         <option value="active">Active</option>
                         <option value="paused">Paused</option>
@@ -487,7 +487,7 @@ export default function ProjectsPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-400 mb-1">
+                      <label className="block text-sm font-medium text-slate-700 mb-1">
                         GitHub Repository URL
                       </label>
                       <input
@@ -495,13 +495,13 @@ export default function ProjectsPage() {
                         value={githubUrl}
                         onChange={(e) => setGithubUrl(e.target.value)}
                         placeholder="https://github.com/..."
-                        className="w-full bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 text-sm"
+                        className="w-full bg-white border border-slate-200 rounded-lg px-4 py-2 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-400 mb-1">
+                    <label className="block text-sm font-medium text-slate-700 mb-1">
                       Tech Stack (comma-separated tags)
                     </label>
                     <input
@@ -509,7 +509,7 @@ export default function ProjectsPage() {
                       value={techStackInput}
                       onChange={(e) => setTechStackInput(e.target.value)}
                       placeholder="Next.js, Tailwind, Supabase"
-                      className="w-full bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 text-sm"
+                      className="w-full bg-white border border-slate-200 rounded-lg px-4 py-2 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm"
                     />
                   </div>
 
@@ -517,18 +517,18 @@ export default function ProjectsPage() {
                     <p className="text-red-400 text-xs mt-1">{formError}</p>
                   )}
 
-                  <div className="flex justify-end gap-3 border-t border-gray-800 pt-3 mt-4">
+                  <div className="flex justify-end gap-3 border-t border-slate-200 pt-3 mt-4">
                     <button
                       type="button"
                       onClick={() => setShowModal(false)}
-                      className="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors"
+                      className="px-4 py-2 text-sm text-slate-500 hover:text-slate-900 transition-colors"
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="bg-purple-600 hover:bg-purple-700 text-white font-medium px-5 py-2 rounded-lg text-sm transition-colors disabled:opacity-50"
+                      className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-5 py-2 rounded-lg text-sm transition-colors disabled:opacity-50"
                     >
                       {submitting ? 'Saving...' : 'Save Project'}
                     </button>
